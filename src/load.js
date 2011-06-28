@@ -1,4 +1,4 @@
-/* LOAD - 20110627-v1.3 */
+/* LOAD - 20110627-v1.4 */
 jQuery.noConflict();
 jQuery(function($){
   var pack = ready.pack();
@@ -36,11 +36,11 @@ jQuery(function($){
   });
   
   var autoloads = [{
-    sel: 'form.validate', req: 'validate.js', call: function(el){ el.validate(); }
+    sel: 'form.validate', req: 'validate.js', call: function(){ $(this).validate(); }
   },{
-    sel: 'input.hint', req: 'hint.js', call: function(el){ el.hint(); }
+    sel: 'input.hint', req: 'hint.js'
   },{
-    sel: 'div.flash', req: 'flash.js', call: function(el){ el.flash(); }
+    sel: 'div.flash', req: 'flash.js', call: function(){ $(this).flash(); }
   }];
   
   // autoloads
@@ -48,19 +48,10 @@ jQuery(function($){
     var item = this;
     if(item.sel) {
       var list = $(item.sel);
-      if(list.length>0){
-        window.ready(item.req,function(){
-          list.each(function(){
-            item.call($(this));
-          });
-          
-        });
-      }
-    }else if(item.test){
-      if(item.test()) window.ready(item.req,function(){
-          item.call();
-        });
-    }
+      if(list.length>0) window.ready(item.req,function(){
+        if(item.call) list.each(item.call)
+      });
+    } else { if(item.test()) window.ready(item.req,item.call); }
   });
   
   // template based classes and scripts
@@ -74,7 +65,7 @@ jQuery(function($){
   $('meta[name=google-analytics]').each(function(){
     var account = $(this).attr('content');
     var head = $('head');
-    $('<script />').html('var _gaq = [[\'_setAccount\', \''+account+'\'], [\'_trackPageview\']];)').appendTo(head);
+    $('<script />').html('var _gaq = [[\'_setAccount\', \''+account+'\'], [\'_trackPageview\']];').appendTo(head);
     $('<script />').attr({
       async:true,
       src: ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'
