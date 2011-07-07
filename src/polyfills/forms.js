@@ -1,6 +1,7 @@
 /**
  * html5 forms module. Yep it's another bicycle. 
  * Dependencies: jQuery
+ * https://github.com/ryanseddon/H5F
  */
 
 (function($) {

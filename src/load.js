@@ -16,9 +16,15 @@ jQuery(function($){
         if(req.length==0) { if($.isFunction(call)) call($); return; }
         var item = req.pop();
         if(item){
-          var url = item;
-          if(url.substr(0,1)!='/') url = path + url;
-          $.getScript(url,load);
+          var url = item.replace(/^\/|\/$/g,'');
+          if(url.indexOf('/')==-1) url = path + url
+          $.ajax({
+            url: url,
+            dataType: 'script',
+            cache: true,
+            global: false,
+            success: load
+          });
         }
       }
       load();
