@@ -39,12 +39,11 @@ jQuery(function($){
   
   // autoload polyfills
   var polys = window.polyfil||{};
-  polys['forms'] = 'form';
   for(var fill in polys) {
     var test = polys[fill];
     if(typeof(test)=='function') if(!test()) break;
     else if($(test).length==0) break;
-    window.ready(path+'polyfills/'+fill+'.js');
+    window.ready(path+'polyfill/'+fill+'.js');
   }
   
   // template based classes and scripts
