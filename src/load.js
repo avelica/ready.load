@@ -3,11 +3,8 @@ jQuery.noConflict();
 jQuery(function($){
   var list = ready();
   var path = ready.path;
-<<<<<<< HEAD
-=======
   var meta = ready.meta;
   var poly = ready.polyfill;
->>>>>>> gh-pages
   
   window.ready = function(){
     var args = arguments;
@@ -43,10 +40,6 @@ jQuery(function($){
   });
   
   // autoload polyfills
-<<<<<<< HEAD
-  var polys = window.polyfil||{};
-=======
->>>>>>> gh-pages
   for(var fill in polys) {
     var test = polys[fill];
     if(typeof(test)=='function') if(!test()) break;
@@ -55,19 +48,11 @@ jQuery(function($){
   }
   
   // template based classes and scripts
-<<<<<<< HEAD
   if(metatags.layout) window.ready(metatags.layout+'.js');
-  
-  //google
-  if(metatags['google-analytics']) {
-    var account = metatags['google-analytics'];
-=======
-  if(meta.layout) window.ready(meta.layout+'.js');
   
   //google
   if(meta['google-analytics']) {
     var account = meta['google-analytics'];
->>>>>>> gh-pages
     var head = $('head');
     $('<script />').html('var _gaq = [[\'_setAccount\', \''+account+'\'], [\'_trackPageview\']];').appendTo(head);
     $('<script />').attr({

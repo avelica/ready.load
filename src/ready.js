@@ -24,26 +24,15 @@
     if(arguments.length==0) return list;
     list[list.length] = arguments;
   }
-<<<<<<< HEAD
-  ready.path = '/scripts/'; /* preset script path */
-=======
->>>>>>> gh-pages
   /* meta data collector */
   var m = doc.getElementsByTagName('meta'), meta = [];
   for(i in m) { i = m[i]; if(i.name) meta[i.name] = i.content; }
   if(meta.layout) addCls(meta.layout); /* assign layout based class */
-<<<<<<< HEAD
-  /* expose abilities */
-  win.ready = ready;
-  win.polyfill = [];
-  win.metadata = meta;
-=======
   
   ready.path = '/scripts/'; /* preset script path */
-  ready.polyfill = [];
+  ready.polyfill = {};
   ready.meta = meta;
   /* exposing ready */
   win.ready = ready;
->>>>>>> gh-pages
   
 })(window,document);
