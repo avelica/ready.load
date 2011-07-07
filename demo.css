@@ -1,0 +1,24 @@
+/* example css */
+
+/* ie specific classes */
+.ie6 body { background: red; }
+.ie7 body { background: blue; }
+.ie8 body { background: yellow; }
+.ie9 body { background: green; }
+
+/* browser specific classes */
+.webkit body { border: 1px solid green; }
+.opera body { border: 1px solid yellow; }
+.ie body { border: 1px solid black; }
+.moz body { border: 1px solid red; }
+
+/* preconfigure screen size based classes */
+.small body { font-size: 18px; }
+.medium body { font-size: 16px; }
+.large body { font-size: 12px; }
+
+/* metatag based layout class */
+.home body { font-family: serif; }
+
+/* utilize css3pie.com for some ie polyfills */
+/* .pie body { behavior: url('/scripts/pie.htc'); */
