@@ -1,0 +1,1 @@
+ready(function(b){b(":text[placeholder]").each(function(){var a=b(this),c=a.attr("placeholder");if(c){var d=function(){a.val()==c&&a.removeClass("placeholder").val("")};a.focus(d).blur(function(){b.trim(a.val())==""&&a.addClass("placeholder").val(c)}).blur();b(this.form).submit(d)}})});

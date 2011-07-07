@@ -1,4 +1,4 @@
-/* LOAD - 20110628-v1.4 */
+/* LOAD - 20110706-v1.5 */
 jQuery.noConflict();
 jQuery(function($){
   var list = ready();
@@ -25,31 +25,6 @@ jQuery(function($){
     }
   }
   
-  var html = $('html');
-  
-  var debounce = function (func, threshold) {
-    var timeout;
-    return function () {
-      var obj = this,
-      args = arguments,
-      delayed = function () {
-        func.apply(obj, args);
-        timeout = null;
-      };
-      if (timeout) clearTimeout(timeout);
-      timeout = setTimeout(delayed, 50);
-    };
-  };
-  
-  var resize = function(){
-    html[0].className=html[0].className.replace(/ (w|lt)-\d+/g, '');
-    var w = $(this).width();
-    var sizes = [1920,1680,1440,1280,1024,768,640,480,320];
-    for(i in sizes) { i=sizes[i]; html.addClass( (i>=w?'lt':'gt')+'-'+i); }
-  }
-  
-  $(window).bind('resize', debounce(resize)).bind('orientationchange',resize);
-  
   // execute preconfigured scripts
   $(list).each(function(){
     if(this.length>1) window.ready(this[0], this[1]);
@@ -66,24 +41,21 @@ jQuery(function($){
     }else{
       if($(test).length==0) break;
     }
-    window.ready(fill+'.js');
+    window.ready(path+'polyfills/'+fill+'.js');
   }
   
   // template based classes and scripts
-  $('meta[name=layout]').each(function(){
-    window.ready($(this).attr('content')+'.js');
-  });
+  if(metatags.layout) window.ready(metatags.layout+'.js');
   
   //google
-  $('meta[name=google-analytics]').each(function(){
-    var account = $(this).attr('content');
+  if(metatags['google-analytics']) {
+    var account = metatags['google-analytics'];
     var head = $('head');
     $('<script />').html('var _gaq = [[\'_setAccount\', \''+account+'\'], [\'_trackPageview\']];').appendTo(head);
     $('<script />').attr({
       async:true,
       src: ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'
     }).appendTo(head);
-
-  });
+  }
   
 });
