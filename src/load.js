@@ -33,14 +33,11 @@ jQuery(function($){
   
   // autoload polyfills
   var polys = window.polyfil||{};
-  polys['placeholder'] = 'input[placeholder]';
+  polys['forms'] = 'form';
   for(var fill in polys) {
     var test = polys[fill];
-    if(typeof(test)=='function'){
-      if(!test()) break;
-    }else{
-      if($(test).length==0) break;
-    }
+    if(typeof(test)=='function') if(!test()) break;
+    else if($(test).length==0) break;
     window.ready(path+'polyfills/'+fill+'.js');
   }
   

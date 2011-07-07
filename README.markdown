@@ -8,7 +8,7 @@ Features
 ============
 
 *   Extremely Small load footprint. __Initial load is less than 1kb__.
-*   Streamlined HTML5 shim for older browsers. Only what we used.
+*   Streamlined HTML5 shim for older browsers. Only what we use.
 *   No javascript class for fallback CSS styles.
 *   Browser specific CSS classes. (.webkit, .moz, .ie, .opera)
 *   Predefined screen widtd based CSS classes. (.small, .medium, .large)
@@ -31,25 +31,24 @@ Then load jQuery and then the load script to the bottom of your document.
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script>!window.jQuery && document.write(unescape('%3Cscript src="/scripts/jquery.js"%3E%3C/script%3E'))</script>
-    <script src="/scripts/load.js?v=1"></script>
+    <script src="/scripts/load.js"></script>
   
-Now anywhere you would normally use jQuery.ready your can simply use ready. The ready function passes the reference to jQuery to make your coding easier.
+Now anywhere on the page you can call the ready function and it will act just like jQuery.ready. This is great for template based websites where you need to provide customized functionality on a page but its not worth modifying your common scripts.
 
     ready(function($){
       $('a').hide();
     });
   
-You can also do script loading as well.
+You can also do script loading as well. Add an additional scripts without modifying your footer.
 
     ready('/scripts/plugin.js',function($){
       $('a').plugin();
     });
     
-Along with the standard html5 shim there are a few extra goodies.
+The library also includes a streamlined HTML5 enabler for older browsers. It also provides numerous CSS class based references regards to browser and screen width. See the feature list about for the complete list.
  
 Enjoy.
- 
- 
+
  
 Credit
 ======
